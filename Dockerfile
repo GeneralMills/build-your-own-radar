@@ -18,11 +18,14 @@ RUN npm ci
 COPY . ./
 
 WORKDIR /src/build-your-own-radar
-#  echo "Starting webpack build..."
-RUN npm run build:prod
+
 #  set env variables to control the tech radar RINGS and QUADRANTS
 ENV QUADRANTS='["People", "Process", "Technology", "Other"]'
 ENV RINGS='["Adopted", "Discovery", "Assess"]'
+
+#  echo "Starting webpack build..."
+RUN npm run build:prod
+
 #  echo "Copying built files to nginx directories..."
 RUN  mkdir -p /opt/build-your-own-radar
 WORKDIR /opt/build-your-own-radar
